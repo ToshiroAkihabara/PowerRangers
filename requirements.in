@@ -1,3 +1,7 @@
 customtkinter
 pillow
 auto-py-to-exe
+isort
+black
+ruff
+mypy
