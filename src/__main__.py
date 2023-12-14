@@ -1,6 +1,6 @@
 import customtkinter  # type: ignore
 
-from PowerManager import PowerManageDefiner
+from PowerManager import get_system_platform
 from Window import Window
 
 
@@ -17,15 +17,14 @@ class App(customtkinter.CTk):
         self.window = Window(master=self, command=self.go_button)
 
     def go_button(self):
-        definer = PowerManageDefiner()
-        manager = definer.get_manager_os()
-        result = self.window.get()
-        if result == "Power Off":
-            manager.power_off()
-        elif result == "Power Reboot":
-            manager.restart()
+        system = get_system_platform()
+        select = self.window.get()
+        if select == "Power Off":
+            system.power_off()
+        elif select == "Power Reboot":
+            system.restart()
         else:
-            manager.log_out()
+            system.log_out()
 
 
 if __name__ == "__main__":

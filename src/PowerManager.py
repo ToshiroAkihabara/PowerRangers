@@ -1,5 +1,5 @@
-import os
 import subprocess
+from platform import system
 from typing import Optional
 
 
@@ -33,14 +33,9 @@ class PowerManagerWindows(PowerManager):
         self.logout = ["shutdown", "/l"]
 
 
-class PowerManageDefiner:
-    def __init__(self) -> None:
-        self.linux = PowerManagerLinux()
-        self.windows = PowerManagerWindows()
-        self.type = os.name
-
-    def get_manager_os(self) -> Optional[PowerManagerLinux | PowerManagerWindows]:
-        if self.type == "posix":
-            return self.linux
-        else:
-            return self.windows
+def get_system_platform() -> Optional[PowerManagerWindows | PowerManagerLinux]:
+    os = system()
+    if os == "Windows":
+        return PowerManagerWindows()
+    else:
+        return PowerManagerLinux()
