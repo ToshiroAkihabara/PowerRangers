@@ -1,7 +1,7 @@
 from controller import Controller
 
 
-def main():
+def main() -> None:
     widget = Controller()
     widget.main()
 

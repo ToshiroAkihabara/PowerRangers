@@ -1,5 +1,8 @@
-import customtkinter
-from views.Window import Window
+from typing import Optional
+
+import customtkinter # type: ignore
+
+from views.Window import PowerLogout, PowerOff, PowerReboot, Window
 
 
 class View(customtkinter.CTk):
@@ -14,9 +17,9 @@ class View(customtkinter.CTk):
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(0, weight=1)
         self.window = Window(master=self, command=self.controller.on_button_click)
-        
-    def get_select(self):
+
+    def get_select(self) -> Optional[PowerOff | PowerLogout | PowerReboot]:
         return self.window.get()
-    
+
     def main(self):
         self.mainloop()

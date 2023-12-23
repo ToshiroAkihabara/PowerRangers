@@ -1,7 +1,7 @@
 from typing import Any
 
 import customtkinter  # type: ignore
-from PIL import Image
+from PIL import Image  # type: ignore
 
 
 class ImageFrame(customtkinter.CTkFrame):

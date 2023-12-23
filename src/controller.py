@@ -7,9 +7,9 @@ class Controller:
         self.model = Model()
         self.view = View(self)
 
-    def main(self):
+    def main(self) -> None:
         self.view.main()
 
-    def on_button_click(self):
+    def on_button_click(self) -> None:
         select = self.view.get_select()
-        return self.model.button_action(select)
+        self.model.button_action(select)

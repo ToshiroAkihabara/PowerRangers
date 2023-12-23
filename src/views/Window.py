@@ -1,4 +1,22 @@
+from dataclasses import dataclass
+from typing import Optional
+
 from views.Frame import ImageFrame, RunButtonFrame, SelectWidgetFrame
+
+
+@dataclass
+class PowerOff:
+    power_off: str
+
+
+@dataclass
+class PowerReboot:
+    power_reboot: str
+
+
+@dataclass
+class PowerLogout:
+    power_logout: str
 
 
 class Window:
@@ -17,5 +35,5 @@ class Window:
         self.button_frame.grid(row=2, column=0, padx=0, pady=(0, 0), sticky="nsw")
         self.button_frame.configure(fg_color="transparent")
 
-    def get(self):
+    def get(self) -> Optional[PowerOff | PowerLogout | PowerReboot]:
         return self.widget_frame.get()
