@@ -11,7 +11,7 @@ class PowerManager:
 
     def power_off(self):
         subprocess.call(self.shutdown)
-
+        
     def log_out(self):
         subprocess.call(self.logout)
 
@@ -33,9 +33,16 @@ class PowerManagerWindows(PowerManager):
         self.logout = ["shutdown", "/l"]
 
 
-def get_system_platform() -> Optional[PowerManagerWindows | PowerManagerLinux]:
-    os = system()
-    if os == "Windows":
-        return PowerManagerWindows()
-    else:
-        return PowerManagerLinux()
+class SystemPlatform:
+    def __init__(self) -> None:
+        self.os = system()
+        self.platform = self.select_system_platform()
+
+    def select_system_platform(self) -> Optional[PowerManagerWindows | PowerManagerLinux]:
+        if self.os == "Windows":
+            return PowerManagerWindows()
+        else:
+            return PowerManagerLinux()
+
+    def get_platform(self):
+        return self.platform

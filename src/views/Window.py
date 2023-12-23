@@ -1,4 +1,4 @@
-from Frame import ImageFrame, RunButtonFrame, SelectWidgetFrame
+from views.Frame import ImageFrame, RunButtonFrame, SelectWidgetFrame
 
 
 class Window:
