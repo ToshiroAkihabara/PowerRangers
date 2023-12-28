@@ -1,8 +1,8 @@
-from controller import Controller
+from src.view import View
 
 
 def main() -> None:
-    widget = Controller()
+    widget = View()
     widget.main()
 
 

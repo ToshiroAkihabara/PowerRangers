@@ -1,15 +1,18 @@
-from model import Model
-from view import View
+from src.models.power_manager import SystemPlatform
+from src.views.window import PowerLogout, PowerOff, PowerReboot
 
 
 class Controller:
     def __init__(self) -> None:
-        self.model = Model()
-        self.view = View(self)
+        self.system = SystemPlatform()
+        self.platform = self.system.select_system_platform()
 
-    def main(self) -> None:
-        self.view.main()
-
-    def on_button_click(self) -> None:
-        select = self.view.get_select()
-        self.model.button_action(select)
+    def button_action(
+        self, select: PowerOff | PowerLogout | PowerReboot | None
+    ) -> None:
+        if select == "Power Off":
+            self.platform.power_off()
+        elif select == "Power Reboot":
+            self.platform.restart()
+        elif select == "Power Logout":
+            self.platform.log_out()

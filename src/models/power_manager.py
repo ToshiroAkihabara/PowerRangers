@@ -1,6 +1,5 @@
 import subprocess
 from platform import system
-from typing import Optional
 
 
 class PowerManager:
@@ -21,30 +20,28 @@ class PowerManager:
 
 class PowerManagerLinux(PowerManager):
     def __init__(self) -> None:
-        self.shutdown = ["shutdown", "now"]
-        self.reboot = ["shutdown", "-r", "now"]
-        self.logout = ["gnome-session-quit", "--no-prompt"]
-
-
+        super().__init__(
+            shutdown = ["shutdown", "now"], 
+            reboot = ["shutdown", "-r", "now"], 
+            logout = ["gnome-session-quit", "--no-prompt"]
+        )
+  
 class PowerManagerWindows(PowerManager):
     def __init__(self) -> None:
-        self.shutdown = ["shutdown", "/s", "/t", "0"]
-        self.reboot = ["shutdown", "/r", "/t", "0"]
-        self.logout = ["shutdown", "/l"]
-
-
+        super().__init__(
+            shutdown = ["shutdown", "/s", "/t", "0"],
+            reboot = ["shutdown", "/r", "/t", "0"],
+            logout = ["shutdown", "/l"]
+        )
+            
 class SystemPlatform:
     def __init__(self) -> None:
         self.os = system()
-        self.platform = self.select_system_platform()
 
     def select_system_platform(
         self,
-    ) -> Optional[PowerManagerWindows | PowerManagerLinux]:
+    ) -> PowerManagerWindows | PowerManagerLinux | None:
         if self.os == "Windows":
             return PowerManagerWindows()
-        else:
+        elif self.os == "Linux":
             return PowerManagerLinux()
-
-    def get_platform(self):
-        return self.platform

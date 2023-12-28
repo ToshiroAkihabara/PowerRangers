@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Optional
 
-from views.Frame import ImageFrame, RunButtonFrame, SelectWidgetFrame
+from src.views.frame import ImageFrame, RunButtonFrame, SelectWidgetFrame
 
 
 @dataclass
