@@ -1,4 +1,4 @@
-from src.models.power_manager import SystemPlatform
+from src.controllers.power_manager import SystemPlatform
 from src.views.window import PowerLogout, PowerOff, PowerReboot
 
 
