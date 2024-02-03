@@ -1,8 +1,9 @@
 import subprocess
+from abc import ABC
 from platform import system
 
 
-class PowerManager:
+class PowerManager(ABC):
     def __init__(self, shutdown, reboot, logout) -> None:
         self.shutdown = shutdown
         self.reboot = reboot
@@ -16,7 +17,6 @@ class PowerManager:
 
     def restart(self):
         subprocess.call(self.reboot)
-
 
 class PowerManagerLinux(PowerManager):
     def __init__(self) -> None:
@@ -35,6 +35,11 @@ class PowerManagerWindows(PowerManager):
         )
             
 class SystemPlatform:
+    def __new__(cls) -> None:
+        if not hasattr(cls, 'instance'):
+            cls.instance = super(SystemPlatform, cls).__new__(cls)
+        return cls.instance
+    
     def __init__(self) -> None:
         self.os = system()
 

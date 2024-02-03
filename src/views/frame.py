@@ -18,9 +18,9 @@ class ImageFrame(customtkinter.CTkFrame):
 
 class SelectWidgetFrame(customtkinter.CTkFrame):
     def __init__(self, master, title: Any, values: list[str]) -> None:
+        super().__init__(master)
         self.title = title
         self.values = values
-        super().__init__(master)
         self.title = customtkinter.CTkLabel(
             self, text=self.title, fg_color="transparent"
         )
@@ -34,9 +34,9 @@ class SelectWidgetFrame(customtkinter.CTkFrame):
 
 class RunButtonFrame(customtkinter.CTkFrame):
     def __init__(self, master, title: str, command) -> None:
+        super().__init__(master)
         self.title = title
         self.command = command
-        super().__init__(master)
         self.button_img = Image.open(r"src/image/light.png")
         self.select = customtkinter.CTkButton(
             master=self,
