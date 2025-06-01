@@ -1,4 +1,4 @@
-# PowerRangers Shutdown
+# PowerRangers
 
 ![PowerRangers](https://github.com/ToshiroAkihabara/Shutdown/blob/main/display/operation.gif)
 
